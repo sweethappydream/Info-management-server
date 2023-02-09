@@ -3,9 +3,13 @@ Java Spring Backend server for Information Management System.
 
 # APIs
 /register
+
 /login
+
 /user
+
 /channel
+
 /channel/:id
 
 **Register user**
