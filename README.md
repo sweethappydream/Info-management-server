@@ -1,6 +1,15 @@
 # Information Management Server
 Java Spring Backend server for Information Management System.
 
+# Project Abstract
+
+Information Mangement is a system to share the information between users according to the categories.
+Functionalities to implement is like following:
+
+* User Authentication
+* 3 Main Channels (Experience, Job channel, Interview Questions)
+* Add private / public channels
+
 # APIs
 /register
 
