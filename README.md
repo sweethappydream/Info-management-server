@@ -77,14 +77,14 @@ Java Spring Backend server for Information Management System.
 
 * **Method:**
 
-  `GET` 'POST'
+  `GET` `POST`
   
 * **URL Params**
 
    None
 
   
-**Get / post / put / delete channel info **
+**Get / post / put / delete channel info**
 ----
    Returns json data about the channel info.
 
