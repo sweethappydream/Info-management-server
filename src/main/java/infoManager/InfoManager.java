@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import lombok.RequiredArgsConstructor;
+import infoManager.model.Experience;
 import infoManager.model.User;
 import infoManager.model.UserRole;
 import org.modelmapper.ModelMapper;
@@ -29,23 +30,28 @@ public class InfoManager implements CommandLineRunner {
     return new ModelMapper();
   }
 
-  @Override
+  // @Override
   public void run(String... params) throws Exception {
-    User admin = new User();
-    admin.setUsername("admin");
-    admin.setPassword("admin");
-    admin.setEmail("admin@email.com");
-    admin.setUserRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_ADMIN)));
+    Experience temp = new Experience();
 
-    userService.signup(admin);
+    temp.setUser(userService.search("admin"));
+    temp.setContent("haha");
+    temp.setDate(null);
+    // User admin = new User();
+    // admin.setUsername("admin");
+    // admin.setPassword("admin");
+    // admin.setEmail("admin@email.com");
+    // admin.setUserRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_ADMIN)));
 
-    User client = new User();
-    client.setUsername("client");
-    client.setPassword("client");
-    client.setEmail("client@email.com");
-    client.setUserRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_CLIENT)));
+    // userService.signup(admin);
 
-    userService.signup(client);
+    // User client = new User();
+    // client.setUsername("client");
+    // client.setPassword("client");
+    // client.setEmail("client@email.com");
+    // client.setUserRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_CLIENT)));
+
+    // userService.signup(client);
   }
 
 }

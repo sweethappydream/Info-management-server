@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import lombok.RequiredArgsConstructor;
 import infoManager.model.User;
+import infoManager.model.UserRole;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +25,9 @@ import io.swagger.annotations.Authorization;
 import infoManager.dto.UserDataDTO;
 import infoManager.dto.UserResponseDTO;
 import infoManager.service.UserService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/users")
@@ -52,7 +56,16 @@ public class UserController {
       @ApiResponse(code = 403, message = "Access denied"), //
       @ApiResponse(code = 422, message = "Username is already in use")})
   public String signup(@ApiParam("Signup User") @RequestBody UserDataDTO user) {
-    return userService.signup(modelMapper.map(user, User.class));
+    System.out.println(user);
+    User newUser = new User();
+    newUser.setEmail(user.getEmail());
+    newUser.setPassword(user.getPassword());
+    newUser.setUsername(user.getUsername());
+    if(user.getUserRoles() == "ROLE_CLIENT")
+      newUser.setUserRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_CLIENT)));
+    else
+      newUser.setUserRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_ADMIN)));
+    return userService.signup(newUser);
   }
 
   @DeleteMapping(value = "/{username}")

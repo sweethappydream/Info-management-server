@@ -36,7 +36,7 @@ public class UserService {
   public String signup(User user) {
     if (!userRepository.existsByUsername(user.getUsername())) {
       user.setPassword(passwordEncoder.encode(user.getPassword()));
-      System.out.println(user.getPassword());
+      System.out.println(user);
       userRepository.save(user);
       return jwtTokenProvider.createToken(user.getUsername(), user.getUserRoles());
     } else {

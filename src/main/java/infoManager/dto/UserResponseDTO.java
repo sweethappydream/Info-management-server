@@ -16,6 +16,6 @@ public class UserResponseDTO {
   @ApiModelProperty(position = 2)
   private String email;
   @ApiModelProperty(position = 3)
-  List<UserRole> appUserRoles;
+  List<UserRole> userRoles;
 
 }
