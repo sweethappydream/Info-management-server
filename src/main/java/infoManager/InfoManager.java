@@ -1,5 +1,7 @@
 package infoManager;
 
+// import java.util.Date;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -7,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import infoManager.model.Experience;
 import infoManager.model.User;
 import infoManager.model.UserRole;
+import infoManager.repository.ExperienceRepository;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +24,7 @@ import infoManager.service.UserService;
 public class InfoManager implements CommandLineRunner {
 
   final UserService userService;
+  final ExperienceRepository experienceRepository;
 
   public static void main(String[] args) {
     SpringApplication.run(InfoManager.class, args);
@@ -36,7 +41,11 @@ public class InfoManager implements CommandLineRunner {
 
     temp.setUser(userService.search("admin"));
     temp.setContent("haha");
-    temp.setDate(null);
+    temp.setDate(new Date(3));
+    temp.setTopic("visual code");
+    experienceRepository.save(temp);
+    // System.out.println(experienceRepository.findAll());
+    
     // User admin = new User();
     // admin.setUsername("admin");
     // admin.setPassword("admin");

@@ -24,15 +24,15 @@ public class Experience {
   private Integer id;
 
   @ManyToOne
-  @JoinColumn(name = "user_id")
+  @JoinColumn(name = "username", referencedColumnName = "username")
   private User user;
 
-  @Column(unique = true, nullable = false)
+  @Column(nullable = false)
   private String topic;
 
-  @Column(unique = true, nullable = false)
+  @Column(nullable = false)
   private String content;
 
-  @Column(unique = true, nullable = false)
+  @Column(nullable = false)
   private Date date;
 }
