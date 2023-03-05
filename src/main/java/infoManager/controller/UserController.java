@@ -39,7 +39,7 @@ public class UserController {
   private final ModelMapper modelMapper;
 
   @PostMapping("/signin")
-  @ApiOperation(value = "${UserController.signin}")
+  @ApiOperation(value = "Signin")
   @ApiResponses(value = {//
       @ApiResponse(code = 400, message = "Something went wrong"), //
       @ApiResponse(code = 422, message = "Invalid username/password supplied")})
@@ -50,7 +50,7 @@ public class UserController {
   }
 
   @PostMapping("/signup")
-  @ApiOperation(value = "${UserController.signup}")
+  @ApiOperation(value = "Signup")
   @ApiResponses(value = {//
       @ApiResponse(code = 400, message = "Something went wrong"), //
       @ApiResponse(code = 403, message = "Access denied"), //
@@ -70,7 +70,7 @@ public class UserController {
 
   @DeleteMapping(value = "/{username}")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
-  @ApiOperation(value = "${UserController.delete}", authorizations = { @Authorization(value="apiKey") })
+  @ApiOperation(value = "Delete user by username", authorizations = { @Authorization(value="apiKey") })
   @ApiResponses(value = {//
       @ApiResponse(code = 400, message = "Something went wrong"), //
       @ApiResponse(code = 403, message = "Access denied"), //
@@ -83,7 +83,7 @@ public class UserController {
 
   @GetMapping(value = "/{username}")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
-  @ApiOperation(value = "${UserController.search}", response = UserResponseDTO.class, authorizations = { @Authorization(value="apiKey") })
+  @ApiOperation(value = "$Get user by user name", response = UserResponseDTO.class, authorizations = { @Authorization(value="apiKey") })
   @ApiResponses(value = {//
       @ApiResponse(code = 400, message = "Something went wrong"), //
       @ApiResponse(code = 403, message = "Access denied"), //
@@ -94,8 +94,8 @@ public class UserController {
   }
 
   @GetMapping(value = "/me")
-  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
-  @ApiOperation(value = "${UserController.me}", response = UserResponseDTO.class, authorizations = { @Authorization(value="apiKey") })
+  // @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
+  @ApiOperation(value = "find me", response = UserResponseDTO.class, authorizations = { @Authorization(value="apiKey") })
   @ApiResponses(value = {//
       @ApiResponse(code = 400, message = "Something went wrong"), //
       @ApiResponse(code = 403, message = "Access denied"), //
@@ -106,6 +106,7 @@ public class UserController {
 
   @GetMapping("/refresh")
   @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
+  @ApiOperation(value = "Refresh")
   public String refresh(HttpServletRequest req) {
     return userService.refresh(req.getRemoteUser());
   }

@@ -3,6 +3,7 @@ package infoManager.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Data // Create getters and setters
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
